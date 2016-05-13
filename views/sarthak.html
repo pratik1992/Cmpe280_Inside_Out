@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; Charset=UTF-8">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>
+    <style>
+        form{
+            width:40%;
+            height: auto;
+            padding: 30px;
+            margin: auto;
+            font-size: 16px;
+            border: 3px solid #093969;
+            border-radius: 8px;
+        }
+        .required:after {
+            color: red;
+            content: ' *';
+            display:inline;
+        }
+    </style>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+    <script>
+
+
+        function Submit() {
+
+            var max_fields = 10; //maximum input boxes allowed
+            var wrapper = $("#main_container"); //Fields wrapper
+            var add_button = $(".add_field_button"); //Add button ID
+            var submit = $(".btn-default");
+
+
+
+            datefunction();
+
+
+
+
+            var cities = [];
+            var fromDates = [];
+            var toDates = [];
+            var userData = [];
+
+
+            $(".cities").each(function (e) {
+
+                var city = $(this).val();
+
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({'address': city}, function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        resultsMap.setCenter(results[0].geometry.location);
+                        loc[0] = results[0].geometry.location.lat();
+                        loc[1] = results[0].geometry.location.lng();
+
+                        var temp1 = city + "X" + loc[0] + "Y" + loc[1];
+                        cities.push(temp1);
+                    }
+
+                })
+
+
+            })
+
+            $(".fromDate").each(function (e) {
+
+                fromDates.push($(this).val());
+            })
+
+
+            $(".toDate").each(function (e) {
+
+                toDates.push($(this).val());
+            })
+
+
+            for (var i = 0; i < cities.length; i++) {
+                var str = cities[i];
+                var index1 = str.indexOf('X');
+                var index2 = str.indexOf('Y');
+                var city = str.substr(0, index1);
+                var latitude = Number(str.substr(index1 + 1, index2));
+                var longitude = Number(str.substr(index2, str.length));
+                var startdatetime = String(fromDates[i]);
+                var fromIndex = startdatetime.indexOf(' ');
+                startdatetime = startdatetime.substr(0, fromIndex) + "T" + startdatetime.substr(fromIndex + 1, startdatetime.length);
+                var enddatetime = String(toDates[i]);
+                var toIndex = enddatetime.indexOf(' ');
+                enddatetime = enddatetime.substr(0, toIndex) + "T" + enddatetime.substr(toIndex + 1, enddatetime.length);
+                var indCity = {
+                    "cityname": city,
+                    "latitude": latitude,
+                    "longitude": longitude,
+                    "startdatetime": startdatetime,
+                    "enddatetime": enddatetime
+                }
+                userData.push(indCity);
+                console.log(userData);
+            }
+
+
+            function datefunction() {
+                $('.date').datetimepicker({
+                    locale: 'es',
+                    format: 'yyyy-MM-dd hh:mm:ss'
+                });
+                $('.date').datetimepicker({
+                    locale: 'es',
+                    format: 'yyyy-MM-dd hh:mm:ss'
+
+                });
+            }
+
+
+            var x = 0;
+            $(add_button).on("click", function (e) { //on add input button click
+                e.preventDefault();
+                if (x < max_fields) { //max input box allowed
+                    x++; //text box increment
+                    var main_div = document.getElementById("main_container").innerHTML;
+                    $(wrapper).append(main_div + '<a href="#" class="remove_field">Remove</a>'); //add
+                }
+                datefunction();
+            });
+
+            $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+                e.preventDefault();
+                $(this).parent('div').remove();
+                x--;
+            })
+
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+<form>
+    <div id="main_container">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <label class="required">Select City</label>
+                <input type="text" class="form-control cities" list="cities" placeholder="Enter City Name" required>
+                  <span class="input-group-btn">
+                  </span>
+                <datalist id="cities">
+                    <select name="cities">
+                        <option value="San Jose">
+                        <option value="San Francisco">
+                        <option value="Palo Alto">
+                        <option value="Pittsburgh">
+                        <option value="New York">
+                        <option value="New Jersey">
+                    </select>
+                </datalist>
+            </div>
+            <div class="input-append date">
+                <label class="required">From Date</label>
+                <input type="text" class="fromDate" required/>
+                    <span class="add-on">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                    </span>
+            </div>
+            <div class="input-append date">
+                <label class="required">To Date</label>
+                <input type="text" class="toDate" required/>
+                    <span class="add-on">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                    </span>
+            </div>
+        </div>
+    </div>
+    <div class="input_fields_wrap">
+        <button class="add_field_button btn btn-info">Add City</button>
+    </div>
+    <button class="btn btn-default" type="button" id="Go" onclick="Submit()">Go!</button>
+</form>
+</body>
+</html>

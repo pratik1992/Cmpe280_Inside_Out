@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Pollution Index (AirPI) System</title>
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000000 url(../img/loading.gif) center center no-repeat;
+            color: #ffffff;
+            font-family: sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+            height: 100%;
+        }
+
+        #info {
+
+            font-size: 11px;
+            position: absolute;
+            bottom: 5px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 3px;
+            right: 10px;
+            padding: 10px;
+
+        }
+
+        #currentInfo {
+            width: 270px;
+            position: absolute;
+            left: 20px;
+            top: 63px;
+
+            background-color: rgba(0, 0, 0, 0.2);
+
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+
+        }
+
+        a {
+            color: #aaa;
+            text-decoration: none;
+            font: 20px Georgia;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .bull {
+            padding: 0 5px;
+            color: #555;
+        }
+
+        #title {
+            position: absolute;
+            top: 20px;
+            width: 270px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+            font: 20px Georgia;
+            padding: 10px;
+        }
+
+        .year {
+            font: 16px Georgia;
+            line-height: 26px;
+            height: 30px;
+            text-align: center;
+            float: left;
+            width: 90px;
+            color: rgba(255, 255, 255, 0.4);
+
+            cursor: pointer;
+            -webkit-transition: all 0.1s ease-out;
+        }
+
+        .year:hover, .year.active {
+            font-size: 23px;
+            color: #fff;
+        }
+
+        #ce span {
+            display: none;
+        }
+
+        #ce {
+            width: 107px;
+            height: 55px;
+            display: block;
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+            background: url(../img/ce.png);
+        }
+
+
+        #map {
+            height: 48%;
+            width:29%;
+            top:343px;
+            left:11px;
+        }
+        #floating-panel {
+            position: absolute;
+            top: 612px;
+            left: 1%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+    </style>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/pluton-ie7.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57.png">
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+
+
+
+
+</head>
+<body>
+
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+                    <span  class="brandName">
+
+                            AirPI
+
+                    </span>
+
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-menu"></i>
+            </button>
+            <!-- Main navigation -->
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav" id="top-navigation">
+                    <li class="active"><a href="/home"  data-toggle="modal" data-target="#loginModal">Home</a></li>
+                    <li><a href="/analytics">Analytics</a></li>
+                    <li><a href="/logout">Logout</a></li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="tabulardata">
+
+
+    2D data here
+
+</div>
+
+
+
+<script src="externals/jquery.min.js"></script>
+
+<script src="js/breezoanalysis.js"></script>
+</body>
+</html>
+

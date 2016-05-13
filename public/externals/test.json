@@ -1,0 +1,22 @@
+{
+  "result": [
+    {
+      "Longitude": "-118.248405",
+      "Zipcode": "90001",
+      "ZipClass": "STANDARD",
+      "County": "LOS ANGELES",
+      "City": "LOS ANGELES",
+      "State": "CA",
+      "Latitude": "+33.973951"
+    },
+    {
+      "Longitude": "-118.248405",
+      "Zipcode": "90001",
+      "ZipClass": "STANDARD",
+      "County": "LOS ANGELES",
+      "City": "LOS ANGELES",
+      "State": "CA",
+      "Latitude": "+33.973951"
+    }
+  ]
+}

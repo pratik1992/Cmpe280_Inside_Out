@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Air Pollution index ,Air Quality ,Pollution,Pollution levels,Pollution Parts per million,Health,Dominant Pollutant
+        C02,NO2">
+    <title>AirPI Home</title>
+    <!-- Load Roboto font -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <!-- Load css styles -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="css/pluton-ie7.css" />
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+
+    <!-- 2D Maps JS -->
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <script src="http://d3js.org/topojson.v1.js"></script>
+    <script src="js/2dmaps.js"></script>
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57.png">
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/pluton-ie7.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57.png">
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+                    <span  class="brandName">
+                        <a href="/">
+                            AirPI
+                        </a>
+                    </span>
+            <!-- Navigation button, visible on small resolution -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-menu"></i>
+            </button>
+            <!-- Main navigation -->
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav" id="top-navigation">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/displayWorldGlobe">View 3D</a></li>
+                    <li><a href="/">View 2D</a></li>
+                    <li><a href="/healthByCity">Health</a></li>
+                    <li><a href="/chooseCity">Search</a></li>
+                    <li><a href="/informationResult">View Stats</a></li>
+                    <li><a href="/logout">Logout</a></li>
+
+                </ul>
+            </div>
+            <!-- End main navigation -->
+        </div>
+    </div>
+</div>
+
+<div id="container"></div>
+
+<div id="info">
+    <strong><a href="http://www.chromeexperiments.com/globe">World Pollution Index</a></strong>
+
+</div>
+
+<div id="currentInfo">
+    <span id="year1990" class="year"></span>
+    <span id="year1995" class="year"></span>
+    <span id="year2000" class="year"></span>
+    <span id="year2001" class="year"></span>
+</div>
+
+
+
+<script type="text/javascript" src="externals/Detector.js"></script>
+<script type="text/javascript" src="externals/three.min.js"></script>
+<script type="text/javascript" src="externals/Tween.js"></script>
+<script type="text/javascript" src="externals/globe.js"></script>
+<script type="text/javascript" src="externals/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/webGLEarth.js"></script>
+
+
+</body>
+
+</html>

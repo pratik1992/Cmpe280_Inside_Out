@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset=utf-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Air Pollution index ,Air Quality ,Pollution,Pollution levels,Pollution Parts per million,Health,Dominant Pollutant
+        C02,NO2">
+
+        <title>AirPI Home</title>
+        <!-- Load Roboto font -->
+
+
+
+
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <!-- Load css styles -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <!--[if IE 7]>
+            <link rel="stylesheet" type="text/css" href="css/pluton-ie7.css" />
+        <![endif]-->
+        
+        <link rel="stylesheet" type="text/css" href="css/animate.css" />
+
+        <!-- 2D Maps JS -->
+        <script src="http://d3js.org/d3.v3.js"></script>
+        <script src="http://d3js.org/topojson.v1.js"></script>
+        <script src="js/2dmaps.js"></script>
+
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72.png">
+        <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57.png">
+        <link rel="shortcut icon" href="images/ico/favicon.ico">
+        <script>
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                var month = today.getMonth();
+                var day = today.getDate();
+                var year = today.getYear();
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('clock').innerHTML =
+                "Time: "+ h + ":" + m + ":" + s;
+                var t = setTimeout(startTime, 500);
+            }
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                return i;
+            }
+        </script>
+    </head>
+    
+    <body style="background-color: #000;" onload="startTime()">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+
+                <!-- Navigation button, visible on small resolution -->
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <i class="icon-menu"></i>
+                </button>
+                <div  class="brandName pull-left" style="">
+                    <a href="/">
+                        AirPI
+                    </a>
+                </div>
+                <!-- Main navigation -->
+                <div class="nav-collapse collapse pull-right">
+                    <ul class="nav" id="top-navigation">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/displayWorldGlobe">View 3D</a></li>
+                        <li><a href="/healthByCity">Health</a></li>
+                        <li><a href="/chooseCity">Search</a></li>
+                        <li><a href="/generalInfo">Terminlogy</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+                <!-- End main navigation -->
+            </div>
+        </div>
+    </div>
+        
+       <div style="color: #000; margin: -10px 0 0;box-shadow: 5px 5px 15px #43bfc7; padding: 0;background-color: #43bfc7;" class="contact-form centered animated bounceIn"><h3 style="color: #000;"><img alt="service 2" src="images/Analytics.gif" style="margin-right: 2%;" class="img-circle customServiceImg">Real Time Air Pollution Index for All USA Major Cities
+       <span id="clock" style="margin-left: 25%;"></span>
+       </h3></div>
+       <div class="triangle" style="top: -10px;border-top: 30px solid #43bfc7;"></div>
+        <!-- Start home section -->
+        <div id="home" style="" class="container">
+            
+            
+            <div class="row-fluid">
+                    <div class="span9 animated fadeInDown">
+                        <div id="container" style=""></div>
+                        
+                    </div>
+
+                    <div class="span3 animated fadeInDown">
+                        <div class="centered">
+                            <div id="infoSection" class="" style="">
+                    
+                                <div id="info"> </div>
+                                <!-- <input id="inputVal" type="text" value=".75" style="width:30px;"/>
+                                <button id="reload">Set</button> -->
+                            </div>
+                        </div>
+                        <div class="price-column animated fadeInDown customPriceColumn">
+                            <h3 style="text-transform: none; font-size: 30px; padding: 10px 0;">Air Quality</h3>
+                            <ul class="list" style="margin: 0;">
+                                <li class="" style=" padding: 0 25px; border: none;"><p id="airQuality" class="customQualityRecomm"></p></li><hr>
+                                <li class="" style=" padding: 0 25px; border: none;"><STRONG>Recommendation: </STRONG><p id="recomm" class="customQualityRecomm"></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                 
+                    
+                </div>
+            
+            <div class="row" style="height: 20px;">
+                
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        
+        <!-- Footer section start -->
+        <div class="footer" >
+            <p>&copy; 2016, All rights reserved.<p>
+        </div>
+        <!-- Footer section end -->
+        
+        <!-- Include javascript -->
+        <script src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.mixitup.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/modernizr.custom.js"></script>
+        <script type="text/javascript" src="js/jquery.bxslider.js"></script>
+        <script type="text/javascript" src="js/jquery.cslider.js"></script>
+        <script type="text/javascript" src="js/jquery.placeholder.js"></script>
+        <script type="text/javascript" src="js/jquery.inview.js"></script>
+        <!-- css3-mediaqueries.js for IE8 or older -->
+        <!--[if lt IE 9]>
+            <script src="js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/us_cities.js"></script>
+        <script>
+       //basic map config with custom fills, mercator projection
+      var map = new Datamap({
+        scope: 'usa',
+        element: document.getElementById('container'),
+        projection: 'mercator',
+        height: 500,
+        responsive: true,
+
+        fills: {
+          defaultFill: '#566573',
+          lt50: 'blue',
+          gt50: 'red',
+          i100: '#009E3A',
+          i80: '#58BE35',
+          i60: '#C1E619',
+          i40: '#FEC500',
+          i20: '#FE4600',
+          i0: '#800000'
+        },
+        
+        data: {
+          USA: {fillKey: 'lt50' },
+          RUS: {fillKey: 'lt50' },
+          CAN: {fillKey: 'lt50' },
+          BRA: {fillKey: 'gt50' },
+          ARG: {fillKey: 'gt50'},
+          COL: {fillKey: 'gt50' },
+          AUS: {fillKey: 'gt50' },
+          ZAF: {fillKey: 'gt50' },
+          MAD: {fillKey: 'gt50' }       
+        },
+
+        
+      });
+      
+        d3.select(window).on('resize', function() {
+            map.resize();
+        });
+      
+        var i = 0;
+        var color;
+         var interval = setInterval(function() {
+           // var api_data = {};
+            //api_data.city = cities[i].cityname;
+
+           $.ajax({url: "https://api.breezometer.com/baqi/?lat="+cities[i].latitude+"&lon="+cities[i].longitude+"&key=6289193a27104d66a32a5e4610c63915", 
+                success: function(result){
+                    var api_data;
+                    if(result.breezometer_aqi >= 80 && result.breezometer_aqi <=100){
+                        api_data = {name: result.breezometer_description, latitude: cities[i].latitude, longitude: cities[i].longitude, radius: result.breezometer_aqi, fillKey: 'i100', city: cities[i].city, api: result.breezometer_aqi};
+                    } else if(result.breezometer_aqi >= 60 && result.breezometer_aqi <=79){
+                        api_data = {name: result.breezometer_description, latitude: cities[i].latitude, longitude: cities[i].longitude, radius: result.breezometer_aqi, fillKey: 'i80', city: cities[i].city, api: result.breezometer_aqi};
+                    } else if(result.breezometer_aqi >= 40 && result.breezometer_aqi <=59){
+                        api_data = {name: result.breezometer_description, latitude: cities[i].latitude, longitude: cities[i].longitude, radius: result.breezometer_aqi, fillKey: 'i60', city: cities[i].city, api: result.breezometer_aqi};
+                    } else if(result.breezometer_aqi >= 20 && result.breezometer_aqi <=39){
+                        api_data = {name: result.breezometer_description, latitude: cities[i].latitude, longitude: cities[i].longitude, radius: result.breezometer_aqi, fillKey: 'i40', city: cities[i].city, api: result.breezometer_aqi};
+                    } else {
+                        api_data = {name: result.breezometer_description, latitude: cities[i].latitude, longitude: cities[i].longitude, radius: result.breezometer_aqi, fillKey: 'i20', city: cities[i].city, api: result.breezometer_aqi};
+                    }
+                    
+                    
+                    
+                    map.bubbles([api_data], {
+                        
+                       popupTemplate: function(geo, data) {
+                         return "<div class='hoverinfo' style='color: #000;'>It is " + data.name + "</div>";
+                       }
+                     });
+                    animate(result.breezometer_aqi / 100, result.breezometer_color);
+                    $('#airQuality').html(result.breezometer_description);
+                    $('#airQuality').css( "color", result.breezometer_color);
+                    $('#recomm').html(result.random_recommendations.health);
+                    $('#recomm').css( "color", result.breezometer_color);
+
+                    /*setTimeout(function () {
+                      animate(result.breezometer_aqi / 100);
+                    }, 1000);*/
+
+                }
+            });
+           i++;
+           if(i === 500){
+                clearInterval(interval);
+            }
+        }, 4000);
+
+         /*var j = 500;
+         var interval1 = setInterval(function() {
+           $.ajax({url: "https://api.breezometer.com/baqi/?lat="+cities[j].latitude+"&lon="+cities[j].longitude+"&key=6289193a27104d66a32a5e4610c63915", 
+                success: function(result){
+                    
+                    var api_data = {name: result.breezometer_description, latitude: cities[j].latitude, longitude: cities[j].longitude, radius: result.breezometer_aqi, fillKey: 'gt50', city: 'HelloooooCity', api: result.breezometer_aqi};
+                    
+                    map.bubbles([api_data], {
+
+                       popupTemplate: function(geo, data) {
+                         return "<div class='hoverinfo'>It is " + data.name + "</div>";
+                       }
+                       
+                     });
+                    
+
+                }
+            });
+           j++;
+           if(j === 501){
+                clearInterval(interval1);
+            }
+        }, 3000);*/
+    
+
+
+         // My FUNCTIONALITIES
+         var USdata = {
+            "AL": "Alabama",
+            "AK": "Alaska",
+            "AS": "American Samoa",
+            "AZ": "Arizona",
+            "AR": "Arkansas",
+            "CA": "California",
+            "CO": "Colorado",
+            "CT": "Connecticut",
+            "DE": "Delaware",
+            "DC": "District Of Columbia",
+            "FM": "Federated States Of Micronesia",
+            "FL": "Florida",
+            "GA": "Georgia",
+            "GU": "Guam",
+            "HI": "Hawaii",
+            "ID": "Idaho",
+            "IL": "Illinois",
+            "IN": "Indiana",
+            "IA": "Iowa",
+            "KS": "Kansas",
+            "KY": "Kentucky",
+            "LA": "Louisiana",
+            "ME": "Maine",
+            "MH": "Marshall Islands",
+            "MD": "Maryland",
+            "MA": "Massachusetts",
+            "MI": "Michigan",
+            "MN": "Minnesota",
+            "MS": "Mississippi",
+            "MO": "Missouri",
+            "MT": "Montana",
+            "NE": "Nebraska",
+            "NV": "Nevada",
+            "NH": "New Hampshire",
+            "NJ": "New Jersey",
+            "NM": "New Mexico",
+            "NY": "New York",
+            "NC": "North Carolina",
+            "ND": "North Dakota",
+            "MP": "Northern Mariana Islands",
+            "OH": "Ohio",
+            "OK": "Oklahoma",
+            "OR": "Oregon",
+            "PW": "Palau",
+            "PA": "Pennsylvania",
+            "PR": "Puerto Rico",
+            "RI": "Rhode Island",
+            "SC": "South Carolina",
+            "SD": "South Dakota",
+            "TN": "Tennessee",
+            "TX": "Texas",
+            "UT": "Utah",
+            "VT": "Vermont",
+            "VI": "Virgin Islands",
+            "VA": "Virginia",
+            "WA": "Washington",
+            "WV": "West Virginia",
+            "WI": "Wisconsin",
+            "WY": "Wyoming"
+        };
+        map.labels({'customLabelText': USdata});
+        //map.legend();
+        //map.labels({labelColor: 'white', fontSize: 12});
+
+
+var width = 250,
+    height =250,
+    twoPi = 2 * Math.PI,
+    progress = 0,
+    total = 100,
+    formatPercent = d3.format(".0%");
+
+var arc = d3.svg.arc()
+    .startAngle(0)
+    .innerRadius(70)
+    .outerRadius(120)
+;
+
+var svg = d3.select("#info").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr('fill', 'white')
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+var meter = svg.append("g")
+    .attr("class", "progress-meter");
+
+meter.append("path")
+    .attr("class", "background")
+    .attr("d", arc.endAngle(twoPi));
+
+var foreground = meter.append("path")
+    .attr("class", "foreground");
+
+var text = meter.append("text")
+    .attr("text-anchor", "middle")
+    .style("color", "white")
+    .style("font-weight", "bold");
+
+var text2 = meter.append("text")
+    .attr("y", 20)
+    .attr("text-anchor", "middle")
+    .attr("class", "text2")
+    .style("font-family", "verdana")
+    .style("color", "black")
+    .style("font-weight", "bold");
+
+text2.text('A P I');
+
+var animate = function(percentage, color1){
+    var i = d3.interpolate(progress, percentage);
+
+    d3.transition().duration(800).tween("progress", function () {
+        return function (t) {
+            progress = i(t);
+            //foreground.attr("d", arc.endAngle(twoPi * progress));
+            foreground.attr("d", arc.endAngle(twoPi * progress))
+            .style("fill", color1);
+            text.text(formatPercent(progress));
+        };
+    });
+}; 
+
+/*setTimeout(function () {
+  animate($('#inputVal').val());
+}, 500);
+
+$('#reload').on('click', function(){
+  animate($('#inputVal').val());
+});*/
+     </script>
+
+
+    </body>
+</html>
